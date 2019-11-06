@@ -20,3 +20,18 @@ export function kDistinct(string, k) {
   }
   return max;
 }
+
+// Given a string, find the length of the longest substring which has no repeating characters.
+export function longestUnique(string) {
+  const chars = new Set();
+  let max = 0;
+  let start = 0;
+  for (let end = 0; end < string.length; end++) {
+    while (chars.has(string[end])) {
+      chars.delete(string[start++]);
+    }
+    chars.add(string[end]);
+    max = Math.max(max, chars.size);
+  }
+  return max;
+}

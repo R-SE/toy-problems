@@ -22,3 +22,21 @@ describe('kDistinct', () => {
     expect(kDistinct('abcd', 5)).toBe(4);
   });
 });
+
+describe('longestUnique', () => {
+  test('normal case', () => {
+    expect(longestUnique('abkcadaebfik')).toBe(7);
+  });
+
+  test('empty case', () => {
+    expect(longestUnique('')).toBe(0);
+  });
+
+  test('case sensitivity', () => {
+    expect(longestUnique('abcABC')).toBe(6);
+  });
+
+  test('string has spaces or punctuation', () => {
+    expect(longestUnique(' kjrf+ l+9 Fz')).toBe(7);
+  });
+});
