@@ -1,4 +1,4 @@
-import { kDistinct, longestUnique } from "./SlidingWindow.js";
+import { kDistinct, longestUnique, longestSubstringWithReplacement } from "./SlidingWindow.js";
 
 describe('kDistinct', () => {
   test('normal case', () => {
@@ -38,5 +38,27 @@ describe('longestUnique', () => {
 
   test('string has spaces or punctuation', () => {
     expect(longestUnique(' kjrf+ l+9 Fz')).toBe(7);
+  });
+});
+
+describe('longestSubstringWithReplacement', () => {
+  test('normal case', () => {
+    expect(longestSubstringWithReplacement('abbabc', 2)).toBe(5);
+  });
+
+  test('bad greedy replacements', () => {
+    expect(longestSubstringWithReplacement('aabbaabbbb', 2)).toBe(8);
+  });
+
+  test('empty string', () => {
+    expect(longestSubstringWithReplacement('', 1)).toBe(0);
+  });
+
+  test('zero replacements', () => {
+    expect(longestSubstringWithReplacement('abcaa', 0)).toBe(2);
+  });
+
+  test('case sensitivity', () => {
+    expect(longestSubstringWithReplacement('aAabb', 0)).toBe(2);
   });
 });

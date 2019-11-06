@@ -36,3 +36,25 @@ export function longestUnique(string) {
   }
   return max;
 }
+
+// Given a string with lowercase letters only, if you are allowed to replace no more than ‘k’ letters with any letter, find the length of the longest substring having the same letters after replacement.
+
+export function longestSubstringWithReplacement(string, k) {
+  let max = 0;
+  let start = 0
+  let maxFrequency = 0;
+  const frequencies = {};
+
+  for (let end = 0; end < string.length; end++) {
+    frequencies[string[end]] = (frequencies[string[end]] || 0) + 1;
+    maxFrequency = Math.max(maxFrequency, frequencies[string[end]]);
+
+    if (end - start + 1 - maxFrequency > k) {
+      frequencies[string[start++]]--;
+    }
+
+    max = Math.max(max, end - start + 1);
+  }
+
+  return max;
+}
