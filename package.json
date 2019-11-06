@@ -1,0 +1,33 @@
+{
+  "name": "toy-problems",
+  "version": "1.0.0",
+  "description": "",
+  "main": "SlidingWindow.js",
+  "dependencies": {
+    "@babel/core": "^7.7.0",
+    "babel-jest": "^24.9.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.7.1",
+    "jest": "^24.9.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/R-SE/toy-problems.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/R-SE/toy-problems/issues"
+  },
+  "homepage": "https://github.com/R-SE/toy-problems#readme"
+}
