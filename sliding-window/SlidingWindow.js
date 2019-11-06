@@ -38,7 +38,6 @@ export function longestUnique(string) {
 }
 
 // Given a string with lowercase letters only, if you are allowed to replace no more than ‘k’ letters with any letter, find the length of the longest substring having the same letters after replacement.
-
 export function longestSubstringWithReplacement(string, k) {
   let max = 0;
   let start = 0
@@ -58,3 +57,24 @@ export function longestSubstringWithReplacement(string, k) {
 
   return max;
 }
+
+// Given an array containing 0s and 1s, if you are allowed to replace no more than ‘k’ 0s with 1s, find the length of the longest contiguous subarray having all 1s.
+export function binaryK(array, k) {
+  let replacements = 0;
+  let max = 0;
+  let start = 0;
+  for (let end = 0; end < array.length; end++) {
+    if (array[end] === 0) {
+      replacements++;
+    }
+    while (replacements > k) {
+      if (array[start++] === 0) {
+        replacements--;
+      }
+    }
+    max = Math.max(max, end - start + 1);
+  }
+
+  return max;
+}
+

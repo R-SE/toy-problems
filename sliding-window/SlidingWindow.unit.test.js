@@ -1,4 +1,4 @@
-import { kDistinct, longestUnique, longestSubstringWithReplacement } from "./SlidingWindow.js";
+import { kDistinct, longestUnique, longestSubstringWithReplacement, binaryK, hasPermutation } from "./SlidingWindow.js";
 
 describe('kDistinct', () => {
   test('normal case', () => {
@@ -60,5 +60,23 @@ describe('longestSubstringWithReplacement', () => {
 
   test('case sensitivity', () => {
     expect(longestSubstringWithReplacement('aAabb', 0)).toBe(2);
+  });
+});
+
+describe('binaryK', () => {
+  test('normal case', () => {
+    expect(binaryK([1, 0, 1, 0, 1, 1, 0, 1, 1], 2)).toBe(7);
+  });
+
+  test('empty array', () => {
+    expect(binaryK([], 4)).toBe(0);
+  });
+
+  test('zero k', () => {
+    expect(binaryK([0, 1, 0, 1, 1], 0)).toBe(2);
+  });
+
+  test('single character', () => {
+    expect(binaryK([0], 1)).toBe(1);
   });
 });
