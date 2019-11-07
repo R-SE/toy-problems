@@ -78,3 +78,46 @@ export function binaryK(array, k) {
   return max;
 }
 
+// Given a string and a pattern, find out if the string contains any permutation of the pattern.
+export function hasPermutation(str, substr) {
+  if (substr.length > str.length || !substr.length || !str.length) {
+    return false;
+  }
+  const chars = {};
+  for (let char of substr) {
+    chars[char] = (chars[char] || 0) + 1;
+  }
+
+  let start = 0;
+  let end = 0;
+
+  while (end + 1 <= substr.length) {
+    chars[str[end]] = (chars[str[end]] || 0) - 1;
+    if (chars[str[end]] === 0) {
+      delete chars[str[end]];
+    }
+    end++;
+  }
+
+  while (end <= str.length) {
+    if (Object.keys(chars).length === 0) {
+      return true;
+    }
+
+    chars[str[end]] = (chars[str[end]] || 0) - 1;
+    if (chars[str[end]] === 0) {
+      delete chars[str[end]];
+    }
+
+    chars[str[start]] = (chars[str[start]] || 0) + 1;
+    if (chars[str[start]] === 0) {
+      delete chars[str[start]];
+    }
+
+    start++;
+    end++;
+  }
+
+  return false;
+}
+

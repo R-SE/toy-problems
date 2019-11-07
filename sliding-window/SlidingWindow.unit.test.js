@@ -80,3 +80,22 @@ describe('binaryK', () => {
     expect(binaryK([0], 1)).toBe(1);
   });
 });
+
+describe('hasPermutation', () => {
+  test('normal positive case', () => {
+    expect(hasPermutation('abcd', 'cdb')).toBeTruthy();
+  });
+
+  test('normal negative case', () => {
+    expect(hasPermutation('abcdef', 'fa')).toBeFalsy();
+  });
+
+  test('empty string(s)', () => {
+    expect(hasPermutation('', 'abc')).toBeFalsy();
+    expect(hasPermutation('abc', '')).toBeFalsy();
+  });
+
+  test('substring longer than string', () => {
+    expect(hasPermutation('abc', 'abcd')).toBeFalsy();
+  });
+});
