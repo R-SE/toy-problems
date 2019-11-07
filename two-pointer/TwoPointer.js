@@ -31,3 +31,18 @@ export function removeDuplicates(arr) {
 
   return write;
 }
+
+// Given an unsorted array of numbers and a target ‘key’, remove all instances of ‘key’ in-place and return the new length of the array.
+export function removeKeys(arr, key) {
+  let write = 0;
+  let read = 0;
+
+  while (read < arr.length) {
+    if (arr[read] !== key) {
+      arr[write++] = arr[read];
+    }
+    read++;
+  }
+
+  return write;
+}

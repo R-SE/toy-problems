@@ -1,4 +1,4 @@
-import { twoSum, removeDuplicates } from "./TwoPointer";
+import { twoSum, removeDuplicates, removeKeys } from "./TwoPointer";
 
 describe('twoSum', () => {
   test('normal case', () => {
@@ -35,5 +35,24 @@ describe('removeDuplicates', () => {
 
   test('all duplicates', () => {
     expect(removeDuplicates([1, 1, 1, 1, 1, 1])).toBe(1);
+  });
+});
+
+describe('removeKeys', () => {
+  test('normal case', () => {
+    expect(removeKeys([3, 2, 3, 6, 3, 10, 9, 3], 3)).toBe(4);
+    expect(removeKeys([2, 11, 2, 2, 1], 2)).toBe(2);
+  });
+
+  test('empty array', () => {
+    expect(removeKeys([], 1)).toBe(0);
+  });
+
+  test('key not in array', () => {
+    expect(removeKeys([1, 2, 3, 4], 5)).toBe(4);
+  });
+
+  test('all elements are key', () => {
+    expect(removeKeys([1, 1, 1, 1, 1, 1], 1)).toBe(0);
   });
 });
