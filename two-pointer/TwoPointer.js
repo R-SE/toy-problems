@@ -15,3 +15,19 @@ export function twoSum(arr, target) {
   }
   return [];
 }
+
+// Given an array of sorted numbers, remove all duplicates from it. You should not use any extra space; after removing the duplicates in-place return the new length of the array.
+export function removeDuplicates(arr) {
+  let write = 0;
+  let read = 0;
+  let char = null;
+  while (read < arr.length) {
+    if (arr[read] !== char) {
+      arr[write++] = arr[read];
+      char = arr[read];
+    }
+    read++;
+  }
+
+  return write;
+}
