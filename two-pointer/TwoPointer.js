@@ -46,3 +46,21 @@ export function removeKeys(arr, key) {
 
   return write;
 }
+
+// Given a sorted array, create a new array containing squares of all the number of the input array in the sorted order. Use two pointers.
+export function squareNums(arr) {
+  const squares = [];
+
+  let small = 0
+  let big = arr.length - 1;
+
+  while (small <= big) {
+    if (Math.abs(arr[small]) < Math.abs(arr[big])) {
+      squares.unshift(arr[big--] ** 2);
+    } else {
+      squares.unshift(arr[small++] ** 2);
+    }
+  }
+
+  return squares;
+}

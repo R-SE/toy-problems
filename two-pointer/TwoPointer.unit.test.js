@@ -1,4 +1,4 @@
-import { twoSum, removeDuplicates, removeKeys } from "./TwoPointer";
+import { twoSum, removeDuplicates, removeKeys, squareNums } from "./TwoPointer";
 
 describe('twoSum', () => {
   test('normal case', () => {
@@ -54,5 +54,25 @@ describe('removeKeys', () => {
 
   test('all elements are key', () => {
     expect(removeKeys([1, 1, 1, 1, 1, 1], 1)).toBe(0);
+  });
+});
+
+describe('squareNums', () => {
+  test('normal case', () => {
+    expect(squareNums([-2, -1, 0, 2, 3])).toEqual([0, 1, 4, 4, 9]);
+    expect(squareNums([-3, -1, 0, 1, 2])).toEqual([0, 1, 1, 4, 9])
+  });
+
+  test('duplicates', () => {
+    expect(squareNums([-5, -5, -4, 0, 2, 2])).toEqual([0, 4, 4, 16, 25, 25]);
+    expect(squareNums([2, 2, 2, 2, 2])).toEqual([4, 4, 4, 4, 4]);
+  });
+
+  test('empty array', () => {
+    expect(squareNums([])).toEqual([]);
+  });
+
+  test('single element', () => {
+    expect(squareNums([1])).toEqual([1]);
   });
 });
