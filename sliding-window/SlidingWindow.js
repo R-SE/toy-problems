@@ -211,4 +211,45 @@ export function smallestSubstring(originalString, pattern) {
   return minStr;
 }
 
+// Given a string and a list of words, find all the starting indices of substrings in the given string that are a concatenation of all the given words exactly once without any overlapping of words. It is given that all words are of the same length.
+export function concat(str, arr) {
+  if (!str || !arr.length) {
+    return [];
+  }
+
+  const wordLength = arr[0].length;
+  const concatLength = wordLength * arr.length;
+  if (str.length < concatLength) {
+    return [];
+  }
+
+  const indices = [];
+  const frequencies = {};
+  for (let word of arr) {
+    frequencies[word] = (frequencies[word] || 0) + 1;
+  }
+
+  for (let start = 0; start < str.length - concatLength + 1; start++) {
+    const copy = Object.assign({}, frequencies);
+    let next = start;
+
+    while (next < str.length && Object.keys(copy).length) {
+      const word = str.slice(next, next + wordLength);
+      if (!(word in copy)) {
+        break;
+      }
+      copy[word] -= 1;
+      if (copy[word] === 0) {
+        delete copy[word];
+      }
+      next += wordLength;
+    }
+
+    if(!Object.keys(copy).length) {
+      indices.push(start);
+    }
+  }
+
+  return indices;
+}
 

@@ -1,4 +1,4 @@
-import { kDistinct, longestUnique, longestSubstringWithReplacement, binaryK, hasPermutation, findAnagrams, smallestSubstring } from "./SlidingWindow.js";
+import { kDistinct, longestUnique, longestSubstringWithReplacement, binaryK, hasPermutation, findAnagrams, smallestSubstring, concat } from "./SlidingWindow.js";
 
 describe('kDistinct', () => {
   test('normal case', () => {
@@ -147,3 +147,36 @@ describe('smallestSubstring', () => {
   });
 });
 
+describe('concat', () => {
+  test('normal case', () => {
+    expect(concat('catfoxcat', ['cat', 'fox'])).toEqual([0, 3]);
+  });
+
+  test('empty args', () => {
+    expect(concat('catefox', [])).toEqual([]);
+    expect(concat('', ['cat', 'fox'])).toEqual([]);
+  });
+
+  test('overlaps to function correctly', () => {
+    expect(concat('snowmanball', ['snow', 'wman', 'ball'])).toEqual([]);
+    expect(concat('snowmanballsnow', ['snow', 'wman', 'ball'])).toEqual([3]);
+  });
+
+  test('single letter strings', () => {
+    expect(concat('abcd', ['a', 'b', 'c', 'd'])).toEqual([0]);
+  });
+
+  test('lots of duplicates', () => {
+    expect(concat('catfoxcatfoxcatcatfoxfoxcat', ['cat', 'fox'])).toEqual([0, 3, 6, 9, 15, 21]);
+  });
+
+  test('duplicate words', () => {
+    expect(concat('catdogcat', ['dog', 'cat', 'cat'])).toEqual([0]);
+    expect(concat('catdog', ['cat', 'cat', 'dog'])).toEqual([]);
+  });
+
+  test('bad greedy jump', () => {
+    expect(concat('aaabb', ['aa', 'bb'])).toEqual([1]);
+    expect(concat('aaabbdbbaaabbaa', ['aa', 'bb'])).toEqual([1, 6, 9, 11]);
+  });
+});
