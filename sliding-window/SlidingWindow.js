@@ -160,3 +160,55 @@ export function findAnagrams(str, pattern) {
 
   return matchIndices;
 }
+
+// Given a string and a pattern, find the smallest substring in the given string which has all the characters of the given pattern.
+export function smallestSubstring(originalString, pattern) {
+  if (!originalString.length || !pattern.length || pattern.length > originalString.length) {
+    return '';
+  }
+
+  const str = originalString.toLowerCase();
+  pattern = pattern.toLowerCase();
+
+  let uniques = 0;
+  const frequencies = {};
+  for (let char of pattern) {
+    if (!(char in frequencies)) {
+      uniques++;
+      frequencies[char] = 0;
+    }
+    frequencies[char]++;
+  }
+
+  let start = 0;
+  let minLength = Infinity;
+  let minStr = '';
+
+  for (let end = 0; end < str.length; end++) {
+    if (str[end] in frequencies) {
+      if(--frequencies[str[end]] === 0) {
+        uniques--;
+      }
+    }
+
+    if (!uniques) {
+      while(!uniques) {
+        if (str[start] in frequencies) {
+          if (++frequencies[str[start]] === 1) {
+            uniques++;
+          };
+        }
+        start++;
+      }
+
+      if (end - start + 2 < minLength) {
+        minLength = end - start + 2;
+        minStr = originalString.slice(start - 1, end + 1);
+      }
+    }
+  }
+
+  return minStr;
+}
+
+

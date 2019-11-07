@@ -1,4 +1,4 @@
-import { kDistinct, longestUnique, longestSubstringWithReplacement, binaryK, hasPermutation, findAnagrams } from "./SlidingWindow.js";
+import { kDistinct, longestUnique, longestSubstringWithReplacement, binaryK, hasPermutation, findAnagrams, smallestSubstring } from "./SlidingWindow.js";
 
 describe('kDistinct', () => {
   test('normal case', () => {
@@ -118,3 +118,32 @@ describe('findAnagrams', () => {
     expect(findAnagrams('aBc', 'ABC')).toEqual([0]);
   });
 });
+
+describe('smallestSubstring', () => {
+  test('positive case', () => {
+    expect(smallestSubstring('eaffbc', 'cbe')).toBe('eaffbc');
+    expect(smallestSubstring('abbbbbcdefffffbedca', 'abcde')).toBe('bedca');
+  });
+
+  test('equal strings', () => {
+    expect(smallestSubstring('abc', 'bca')).toBe('abc');
+  });
+
+  test('negative case', () => {
+    expect(smallestSubstring('abcde', 'dex')).toBe('');
+  });
+
+  test('duplicate chars in pattern', () => {
+    expect(smallestSubstring('abc', 'aaaabc')).toEqual('');
+  });
+
+  test('empty strings', () => {
+    expect(smallestSubstring('', 'lol')).toBe('');
+    expect(smallestSubstring('abc', '')).toBe('');
+  });
+
+  test('case insensitivity', () => {
+    expect(smallestSubstring('aBc', 'ABC')).toBe('aBc');
+  });
+});
+
