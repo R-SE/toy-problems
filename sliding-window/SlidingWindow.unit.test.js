@@ -1,4 +1,4 @@
-import { kDistinct, longestUnique, longestSubstringWithReplacement, binaryK, hasPermutation } from "./SlidingWindow.js";
+import { kDistinct, longestUnique, longestSubstringWithReplacement, binaryK, hasPermutation, findAnagrams } from "./SlidingWindow.js";
 
 describe('kDistinct', () => {
   test('normal case', () => {
@@ -97,5 +97,24 @@ describe('hasPermutation', () => {
 
   test('substring longer than string', () => {
     expect(hasPermutation('abc', 'abcd')).toBeFalsy();
+  });
+});
+
+describe('findAnagrams', () => {
+  test('positive case - multiple matches', () => {
+    expect(findAnagrams('abab', 'ab')).toEqual([0, 1, 2]);
+  });
+  
+  test('empty strings', () => {
+    expect(findAnagrams('', 'sdkf')).toEqual([]);
+    expect(findAnagrams('sdf', '')).toEqual([]);
+  });
+
+  test('pattern longer than str', () => {
+    expect(findAnagrams('sdf', 'sdfsdf')).toEqual([]);
+  });
+
+  test('case insensitivity', () => {
+    expect(findAnagrams('aBc', 'ABC')).toEqual([0]);
   });
 });

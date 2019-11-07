@@ -121,3 +121,42 @@ export function hasPermutation(str, substr) {
   return false;
 }
 
+// Given a string and a pattern, find all anagrams of the pattern in the given string and return their starting indices.
+
+export function findAnagrams(str, pattern) {
+  if (!str.length || !pattern.length || str.length < pattern.length) {
+    return [];
+  }
+
+  str = str.toLowerCase();
+  pattern = pattern.toLowerCase();
+
+  const frequencies = {};
+  for (let char of pattern) {
+    frequencies[char] = (frequencies[char] || 0) + 1;
+  }
+
+  const matchIndices = [];
+  let start = 0;
+
+  for (let end = 0; end < str.length; end++) {
+    const char = str[end];
+    frequencies[char] = (frequencies[char] || 0) - 1;
+    if (frequencies[char] === 0) {
+      delete frequencies[char];
+    }
+
+    if (end - start + 1 === pattern.length) {
+      if (Object.keys(frequencies).length === 0) {
+        matchIndices.push(start);
+      }
+      frequencies[str[start]] = (frequencies[str[start]] || 0) + 1;
+      if (frequencies[str[start]] === 0) {
+        delete frequencies[str[start]];
+      }
+      start++;
+    }
+  }
+
+  return matchIndices;
+}
