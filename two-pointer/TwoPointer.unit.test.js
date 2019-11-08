@@ -1,4 +1,4 @@
-import { twoSum, removeDuplicates, removeKeys, squareNums } from "./TwoPointer";
+import { twoSum, removeDuplicates, removeKeys, squareNums, uniqueTriplets } from "./TwoPointer";
 
 describe('twoSum', () => {
   test('normal case', () => {
@@ -74,5 +74,26 @@ describe('squareNums', () => {
 
   test('single element', () => {
     expect(squareNums([1])).toEqual([1]);
+  });
+});
+
+describe('uniqueTriplets', () => {
+  test('normal case', () => {
+    expect(uniqueTriplets([-3, 0, 1, 2, -1, 1, -2])).toEqual([[-3, 1, 2], [-2, 0, 2], [-2, 1, 1], [-1, 0, 1]]);
+    expect(uniqueTriplets([-5, 2, -1, -2, 3])).toEqual([[-5, 2, 3], [-2, -1, 3]]);
+  });
+
+  test('answers at end', () => {
+    expect(uniqueTriplets([-10, -10, -10, -1, -4, 5])).toEqual([[-4, -1, 5]]);
+  });
+
+  test('no triplet satisfies conditions', () => {
+    expect(uniqueTriplets([-1, 2, 0, 4, 5])).toEqual([]);
+  });
+
+  test('empty array or array less than 3', () => {
+    expect(uniqueTriplets([])).toEqual([]);
+    expect(uniqueTriplets([0])).toEqual([]);
+    expect(uniqueTriplets([1, -1])).toEqual([]);
   });
 });
