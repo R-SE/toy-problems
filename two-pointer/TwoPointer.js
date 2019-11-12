@@ -114,9 +114,6 @@ export function uniqueTriplets(arr) {
     }
     p1++;
   }
-
-  // [-3, -2, -1, 0, 1, 1, 2]
-
-
   return triplets;
 }
+
