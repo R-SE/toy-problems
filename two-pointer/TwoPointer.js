@@ -147,3 +147,33 @@ export function tripletSumCloseToTarget(arr, targetSum) {
   return closest;
 };
 
+// Given an array arr of unsorted numbers and a target sum, count all triplets in it such that arr[i] + arr[j] + arr[k] < target where i, j, and k are three different indices. Write a function to return the count of such triplets.
+export function tripletWithSmallerSum(arr, targetSum) {
+  if (arr.length < 3) {
+    return 0;
+  }
+  
+  arr = arr.sort((a, b) => a - b);
+  const ans = [];
+
+  let count = 0;
+  let p1 = 0;
+  let p2;
+  let p3;
+
+  while (p1 < arr.length - 2) {
+    p2 = p1 + 1;
+    while (p2 < arr.length - 1) {
+      p3 = p2 + 1;
+      while (arr[p1] + arr[p2] + arr[p3] < targetSum && p3 < arr.length) {
+        count++;
+        ans.push([arr[p1], arr[p2], arr[p3]]);
+        p3++;
+      }
+      p2++;
+    }
+    p1++;
+  }
+
+  return count;
+}
