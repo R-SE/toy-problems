@@ -1,4 +1,4 @@
-import { twoSum, removeDuplicates, removeKeys, squareNums, uniqueTriplets, tripletSumCloseToTarget } from "./TwoPointer";
+import { twoSum, removeDuplicates, removeKeys, squareNums, tripletSum, tripletSumCloseToTarget } from "./TwoPointer";
 
 describe('twoSum', () => {
   test('normal case', () => {
@@ -77,24 +77,24 @@ describe('squareNums', () => {
   });
 });
 
-describe('uniqueTriplets', () => {
+describe('tripletSum', () => {
   test('normal case', () => {
-    expect(uniqueTriplets([-3, 0, 1, 2, -1, 1, -2])).toEqual([[-3, 1, 2], [-2, 0, 2], [-2, 1, 1], [-1, 0, 1]]);
-    expect(uniqueTriplets([-5, 2, -1, -2, 3])).toEqual([[-5, 2, 3], [-2, -1, 3]]);
+    expect(tripletSum([-3, 0, 1, 2, -1, 1, -2])).toEqual([[-3, 1, 2], [-2, 0, 2], [-2, 1, 1], [-1, 0, 1]]);
+    expect(tripletSum([-5, 2, -1, -2, 3])).toEqual([[-5, 2, 3], [-2, -1, 3]]);
   });
 
   test('answers at end', () => {
-    expect(uniqueTriplets([-10, -10, -10, -1, -4, 5])).toEqual([[-4, -1, 5]]);
+    expect(tripletSum([-10, -10, -10, -1, -4, 5])).toEqual([[-4, -1, 5]]);
   });
 
   test('no triplet satisfies conditions', () => {
-    expect(uniqueTriplets([-1, 2, 0, 4, 5])).toEqual([]);
+    expect(tripletSum([-1, 2, 0, 4, 5])).toEqual([]);
   });
 
   test('empty array or array less than 3', () => {
-    expect(uniqueTriplets([])).toEqual([]);
-    expect(uniqueTriplets([0])).toEqual([]);
-    expect(uniqueTriplets([1, -1])).toEqual([]);
+    expect(tripletSum([])).toEqual([]);
+    expect(tripletSum([0])).toEqual([]);
+    expect(tripletSum([1, -1])).toEqual([]);
   });
 });
 
@@ -109,9 +109,14 @@ describe('tripletSumCloseToTarget', () => {
     expect(tripletSumCloseToTarget([-2, 0, 1, 2], 2)).toBe(1);
     expect(tripletSumCloseToTarget([-3, -1, 1, 2], 1)).toBe(0);
     expect(tripletSumCloseToTarget([1, 1, 1], 100)).toBe(3);
+   expect(tripletSumCloseToTarget([1, 2, 3, -10, 14, 0], 10)).toBe(7);
   });
 
   test('multiple possible answers', () => {
-    expect(tripletSumCloseToTarget([1, 2, 3, -10, 14, 0], 10)).toBe(6);
+    expect(tripletSumCloseToTarget([1, 1, 1, 5, 0, 0], 4)).toBe(3);
+  });
+
+  test('exact match', () => {
+    expect(tripletSumCloseToTarget([1, 2, 3, 7, 9, 14, -10, 14, 0], 10)).toBe(10);
   });
 });

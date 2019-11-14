@@ -65,17 +65,7 @@ export function squareNums(arr) {
   return squares;
 }
 
-// Given an array of unsorted numbers, find all unique triplets in it that add up to zero.
-// Input: [-3, 0, 1, 2, -1, 1, -2]
-// Output: [-3, 1, 2], [-2, 0, 2], [-2, 1, 1], [-1, 0, 1]
-// Explanation: There are four unique triplets whose sum is equal to zero.
-// Example 2:
-
-// Input: [-5, 2, -1, -2, 3]
-// Output: [[-5, 2, 3], [-2, -1, 3]]
-// Explanation: There are two unique triplets whose sum is equal to zero.
-
-export function uniqueTriplets(arr) {
+export function tripletSum(arr) {
   if (arr.length < 3) {
     return [];
   }
@@ -116,4 +106,44 @@ export function uniqueTriplets(arr) {
   }
   return triplets;
 }
+
+export function tripletSumCloseToTarget(arr, targetSum) {
+  if (arr.length < 3) {
+    return null;
+  }
+  arr = arr.sort((a, b) => a - b);
+  let absoluteDifference = Infinity;
+  let closest = Infinity;
+  let p1 = 0;
+  let p2;
+  let p3;
+
+  while (p1 < arr.length - 2) {
+    p2 = p1 + 1;
+    p3 = arr.length - 1;
+
+    while (p2 < p3) {
+      const sum = arr[p1] + arr[p2] + arr[p3];
+      const difference = Math.abs(sum - targetSum);
+      if (difference === 0) {
+        return sum;
+      }
+      if (difference < absoluteDifference ) {
+        absoluteDifference = difference;
+        closest = sum;
+      } else if (difference === absoluteDifference) {
+        closest = Math.min(closest, sum);
+      }
+
+      if (sum < targetSum) {
+        p2++;
+      } else {
+        p3--;
+      }
+    }
+    p1++;
+  }
+
+  return closest;
+};
 
