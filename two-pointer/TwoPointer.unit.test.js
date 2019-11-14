@@ -6,7 +6,8 @@ import {
   tripletSum,
   tripletSumCloseToTarget,
   tripletWithSmallerSum,
-  findSubarrays
+  findSubarrays,
+  dutchFlagSort,
 } from "./TwoPointer";
 
 describe('twoSum', () => {
@@ -169,5 +170,17 @@ describe('findSubarrays', () => {
 
   test('no qualifying contiguous subsets', () => {
     expect(findSubarrays([10, 20, 4, 82], 2)).toEqual([]);
+  });
+});
+
+describe('dutchFlagSort', () => {
+  test.only('should sort array in place', () => {
+    const arr = [1, 0, 2, 1, 0];
+    dutchFlagSort(arr);
+    expect(arr).toEqual([0, 0, 1, 1, 2]);
+
+    const arr2 = [2, 2, 0, 1, 2, 0];
+    dutchFlagSort(arr2);
+    expect(arr2).toEqual([0, 0, 1, 2, 2, 2]);
   });
 });
