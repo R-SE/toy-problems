@@ -1,4 +1,12 @@
-import { twoSum, removeDuplicates, removeKeys, squareNums, tripletSum, tripletSumCloseToTarget } from "./TwoPointer";
+import {
+  twoSum,
+  removeDuplicates,
+  removeKeys,
+  squareNums,
+  tripletSum,
+  tripletSumCloseToTarget,
+  tripletWithSmallerSum 
+} from "./TwoPointer";
 
 describe('twoSum', () => {
   test('normal case', () => {
@@ -118,5 +126,26 @@ describe('tripletSumCloseToTarget', () => {
 
   test('exact match', () => {
     expect(tripletSumCloseToTarget([1, 2, 3, 7, 9, 14, -10, 14, 0], 10)).toBe(10);
+  });
+});
+
+describe('tripletWithSmallerSum', () => {
+  test('normal case', () => {
+    expect(tripletWithSmallerSum([-1, 0, 2, 3], 3)).toBe(2);
+    expect(tripletWithSmallerSum([-1, 4, 2, 1, 3], 5)).toBe(4);
+  });
+
+  test('no triplets', () => {
+    expect(tripletWithSmallerSum([], 5)).toBe(0);
+    expect(tripletWithSmallerSum([1], 5)).toBe(0);
+    expect(tripletWithSmallerSum([1, 2], 5)).toBe(0);
+  });
+
+  test('no qualifying subsets', () => {
+    expect(tripletWithSmallerSum([5, 6, 9, 22, 3, 43, 234], 1)).toBe(0);
+  });
+
+  test('triplets exactly equal but not less', () => {
+    expect(tripletWithSmallerSum([5, 5, 5], 15)).toBe(0);
   });
 });
