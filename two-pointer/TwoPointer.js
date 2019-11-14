@@ -177,3 +177,31 @@ export function tripletWithSmallerSum(arr, targetSum) {
 
   return count;
 }
+
+
+// Given an array with positive numbers and a target number, find all of its contiguous subarrays whose product is less than the target number.
+export function findSubarrays(arr, targetSum) {
+  if (!arr.length) {
+    return [];
+  }
+
+  const subsets = [];
+  let start = 0;
+  let end;
+
+  while (start < arr.length) {
+    let product = arr[start];
+    end = start;
+    while (end < arr.length) {
+      if (product < targetSum) {
+        subsets.push(arr.slice(start, end + 1));
+      }
+      end++;
+      product *= arr[end || Infinity];
+    }
+    start++;
+  }
+
+
+  return subsets;
+}

@@ -5,7 +5,8 @@ import {
   squareNums,
   tripletSum,
   tripletSumCloseToTarget,
-  tripletWithSmallerSum 
+  tripletWithSmallerSum,
+  findSubarrays
 } from "./TwoPointer";
 
 describe('twoSum', () => {
@@ -147,5 +148,26 @@ describe('tripletWithSmallerSum', () => {
 
   test('triplets exactly equal but not less', () => {
     expect(tripletWithSmallerSum([5, 5, 5], 15)).toBe(0);
+  });
+});
+
+
+describe('findSubarrays', () => {
+  test('normal case', () => {
+    expect(findSubarrays([2, 5, 3, 10], 30).sort()).toEqual([[2], [5], [2, 5], [3], [5, 3], [10]].sort());
+    expect(findSubarrays([8, 2, 6, 5], 50).sort()).toEqual([[8], [2], [8, 2], [6], [2, 6], [5], [6, 5]].sort());
+  });
+
+  test('negative numbers', () => {
+    expect(findSubarrays([-5, -6, 3], 0).sort()).toEqual([[-5], [-6, 3], [-6]].sort());
+  });
+  
+
+  test('empty case', () => {
+    expect(findSubarrays([], 5)).toEqual([]);
+  });
+
+  test('no qualifying contiguous subsets', () => {
+    expect(findSubarrays([10, 20, 4, 82], 2)).toEqual([]);
   });
 });
