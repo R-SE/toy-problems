@@ -1,4 +1,4 @@
-import { twoSum, removeDuplicates, removeKeys, squareNums, uniqueTriplets } from "./TwoPointer";
+import { twoSum, removeDuplicates, removeKeys, squareNums, uniqueTriplets, tripletSumCloseToTarget } from "./TwoPointer";
 
 describe('twoSum', () => {
   test('normal case', () => {
@@ -98,3 +98,20 @@ describe('uniqueTriplets', () => {
   });
 });
 
+describe('tripletSumCloseToTarget', () => {
+  test('no triplets', () => {
+    expect(tripletSumCloseToTarget([], 5)).toBeNull();
+    expect(tripletSumCloseToTarget([1], 5)).toBeNull();
+    expect(tripletSumCloseToTarget([1, 2], 5)).toBeNull();
+  });
+
+  test('normal case', () => {
+    expect(tripletSumCloseToTarget([-2, 0, 1, 2], 2)).toBe(1);
+    expect(tripletSumCloseToTarget([-3, -1, 1, 2], 1)).toBe(0);
+    expect(tripletSumCloseToTarget([1, 1, 1], 100)).toBe(3);
+  });
+
+  test('multiple possible answers', () => {
+    expect(tripletSumCloseToTarget([1, 2, 3, -10, 14, 0], 10)).toBe(6);
+  });
+});
