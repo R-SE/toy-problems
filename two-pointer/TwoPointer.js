@@ -180,7 +180,7 @@ export function tripletWithSmallerSum(arr, targetSum) {
 
 
 // Given an array with positive numbers and a target number, find all of its contiguous subarrays whose product is less than the target number.
-export function findSubarrays(arr, targetSum) {
+export function findSubarrays(arr, target) {
   if (!arr.length) {
     return [];
   }
@@ -193,7 +193,7 @@ export function findSubarrays(arr, targetSum) {
     let product = arr[start];
     end = start;
     while (end < arr.length) {
-      if (product < targetSum) {
+      if (product < target) {
         subsets.push(arr.slice(start, end + 1));
       }
       end++;
@@ -202,6 +202,25 @@ export function findSubarrays(arr, targetSum) {
     start++;
   }
 
-
   return subsets;
+}
+
+// Given an array containing 0s, 1s and 2s, sort the array in-place. You should treat numbers of the array as objects, hence, we can’t count 0s, 1s, and 2s to recreate the array.
+export function dutchFlagSort(arr) {
+  let start = 0;
+  let curr = 0;
+  let end = arr.length - 1;
+
+  while (curr <= end) {
+    if (arr[curr] === 0) {
+      arr[curr] = 1;
+      arr[start++] = 0;
+      curr++;
+    } else if (arr[curr] === 1) {
+      curr++;
+    } else {
+      [arr[curr], arr[end]] = [arr[end], arr[curr]];
+      end--;
+    }
+  }
 }
