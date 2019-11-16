@@ -174,7 +174,7 @@ describe('findSubarrays', () => {
 });
 
 describe('dutchFlagSort', () => {
-  test.only('should sort array in place', () => {
+  test('should sort array in place', () => {
     const arr = [1, 0, 2, 1, 0];
     dutchFlagSort(arr);
     expect(arr).toEqual([0, 0, 1, 1, 2]);
